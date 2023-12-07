@@ -53,9 +53,9 @@ public class Controller {
                 pairManage.clear();
                 outputView.printClear();
             }
-//            if(command.equals("Q")) {
-//                return;
-//            }
+            if(command.equals("Q")) {
+                return;
+            }
         }
     }
 }
