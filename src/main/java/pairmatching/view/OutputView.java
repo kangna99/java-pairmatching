@@ -26,4 +26,8 @@ public class OutputView {
             System.out.println(String.join(" : ", pair));
         });
     }
+
+    public void printClear() {
+        System.out.println("\n초기화 되었습니다.");
+    }
 }

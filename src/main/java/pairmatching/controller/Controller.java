@@ -49,9 +49,10 @@ public class Controller {
 //                String mission = selection.get(2);
 //                outputView.print
 //            }
-//            if(command.equals("3")) {
-//
-//            }
+            if(command.equals("3")) {
+                pairManage.clear();
+                outputView.printClear();
+            }
 //            if(command.equals("Q")) {
 //                return;
 //            }
