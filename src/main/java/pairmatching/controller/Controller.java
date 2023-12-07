@@ -14,7 +14,6 @@ import pairmatching.view.OutputView;
 public class Controller {
     private final InputView inputView;
     private final OutputView outputView;
-//    private List<Pair> pairs;
     private Map<CourseAndMission, Pairs> pairManage;
 
     public Controller(InputView inputView, OutputView outputView) {
@@ -28,27 +27,11 @@ public class Controller {
             String command = inputView.readCommand();
             if(command.equals("1")) {
                 outputView.printInformation();
-                List<String> selection = inputView.readSelection();
-                CourseAndMission courseAndMission = new CourseAndMission(selection.get(0), selection.get(2));
-                if(pairManage.containsKey(courseAndMission)) {
-                    boolean isRetry = inputView.readRetry();
-                    if(isRetry) {
-                        Pairs pairs = new Pairs(courseAndMission);
-                        pairManage.put(courseAndMission, pairs);
-                        outputView.printMatchingResult(pairs);
-                    }
-                }
-                else {
-                    Pairs pairs = new Pairs(courseAndMission);
-                    pairManage.put(courseAndMission, pairs);
-                    outputView.printMatchingResult(pairs);
-                }
+                makePairsAndPrint(getCourseAndMission());
             }
             if(command.equals("2")) {
                 outputView.printInformation();
-                List<String> selection = inputView.readSelection();
-                CourseAndMission courseAndMission = new CourseAndMission(selection.get(0), selection.get(2));
-                Pairs pairs = pairManage.get(courseAndMission);
+                Pairs pairs = pairManage.get(getCourseAndMission());
                 if(pairs == null) {
                     System.out.println(formatErrorWithRetry(PAIR_MATCHING_NOT_FOUND));
                     continue;
@@ -63,5 +46,27 @@ public class Controller {
                 return;
             }
         }
+    }
+
+    private CourseAndMission getCourseAndMission() {
+        List<String> selection = inputView.readSelection();
+        CourseAndMission courseAndMission = new CourseAndMission(selection.get(0), selection.get(2));
+        return courseAndMission;
+    }
+
+    private void makePairsAndPrint(CourseAndMission courseAndMission) {
+        if(pairManage.containsKey(courseAndMission)) {
+            boolean isRetry = inputView.readRetry();
+            if (isRetry) {
+                Pairs pairs = new Pairs(courseAndMission);
+                pairManage.put(courseAndMission, pairs);
+                outputView.printMatchingResult(pairs);
+            }
+            return;
+        }
+
+        Pairs pairs = new Pairs(courseAndMission);
+        pairManage.put(courseAndMission, pairs);
+        outputView.printMatchingResult(pairs);
     }
 }

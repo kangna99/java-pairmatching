@@ -27,5 +27,4 @@ public class Crew {
     private List<String> getBackendCrewNames() {
         return Randoms.shuffle(backendCrewNames);
     }
-
 }

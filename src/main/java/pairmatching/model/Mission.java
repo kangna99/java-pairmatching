@@ -49,13 +49,15 @@ public enum Mission {
         for(Level level : Level.values()) {
             result.append("\n - ").append(level.getName()).append(": ");
             List<String> missions = getMissionsByLevel(level);
-            if (!missions.isEmpty()) {
-                for (String mission : missions) {
-                    result.append(mission).append(" | ");
-                }
-                result.setLength(result.length() - 3);
-            }
+            joining(missions, result);
         }
         return result.toString();
+    }
+
+    private static void joining(List<String> missions, StringBuilder result) {
+        if (!missions.isEmpty()) {
+            String joinedMissions = String.join(" | ", missions);
+            result.append(joinedMissions);
+        }
     }
 }
