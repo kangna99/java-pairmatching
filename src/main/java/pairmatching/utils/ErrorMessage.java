@@ -8,6 +8,7 @@ public class ErrorMessage {
     public static final String INVALID_LEVEL = "존재하지 않는 레벨입니다.";
     public static final String INVALID_MISSION = "존재하지 않는 미션입니다.";
     public static final String INVALID_RETRY = "네 또는 아니오로 입력해주세요.";
+    public static final String PAIR_MATCHING_NOT_FOUND = "매칭 이력이 없습니다.";
 
     public static String formatErrorWithRetry(String error) {
         return "[ERROR] " + error ;

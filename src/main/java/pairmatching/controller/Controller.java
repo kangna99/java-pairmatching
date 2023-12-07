@@ -1,5 +1,8 @@
 package pairmatching.controller;
 
+import static pairmatching.utils.ErrorMessage.PAIR_MATCHING_NOT_FOUND;
+import static pairmatching.utils.ErrorMessage.formatErrorWithRetry;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,14 +44,17 @@ public class Controller {
                     outputView.printMatchingResult(pairs);
                 }
             }
-//            if(command.equals("2")) {
-//                outputView.printInformation();
-//                List<String> selection = inputView.readSelection();
-//                String course = selection.get(0);
-//                String level = selection.get(1);
-//                String mission = selection.get(2);
-//                outputView.print
-//            }
+            if(command.equals("2")) {
+                outputView.printInformation();
+                List<String> selection = inputView.readSelection();
+                CourseAndMission courseAndMission = new CourseAndMission(selection.get(0), selection.get(2));
+                Pairs pairs = pairManage.get(courseAndMission);
+                if(pairs == null) {
+                    System.out.println(formatErrorWithRetry(PAIR_MATCHING_NOT_FOUND));
+                    continue;
+                }
+                outputView.printMatchingResult(pairs);
+            }
             if(command.equals("3")) {
                 pairManage.clear();
                 outputView.printClear();

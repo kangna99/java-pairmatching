@@ -25,6 +25,7 @@ public class OutputView {
         pairs.getPairedCrews().forEach(pair -> {
             System.out.println(String.join(" : ", pair));
         });
+        System.out.println();
     }
 
     public void printClear() {
