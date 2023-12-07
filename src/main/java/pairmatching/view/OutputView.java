@@ -2,6 +2,7 @@ package pairmatching.view;
 
 import pairmatching.model.Course;
 import pairmatching.model.Mission;
+import pairmatching.model.Pairs;
 
 public class OutputView {
 
@@ -17,5 +18,12 @@ public class OutputView {
 
     private void printMission() {
         System.out.println(Mission.formatted());
+    }
+
+    public void printMatchingResult(Pairs pairs) {
+        System.out.println("\n페어 매칭 결과입니다.");
+        pairs.getPairedCrews().forEach(pair -> {
+            System.out.println(String.join(" : ", pair));
+        });
     }
 }

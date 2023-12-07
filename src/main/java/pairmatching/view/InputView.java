@@ -7,6 +7,7 @@ import static pairmatching.utils.ErrorMessage.INVALID_COMMAND;
 import static pairmatching.utils.ErrorMessage.INVALID_COURSE;
 import static pairmatching.utils.ErrorMessage.INVALID_LEVEL;
 import static pairmatching.utils.ErrorMessage.INVALID_MISSION;
+import static pairmatching.utils.ErrorMessage.INVALID_RETRY;
 import static pairmatching.utils.ErrorMessage.formatErrorWithRetry;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -53,6 +54,26 @@ public class InputView {
         }
     }
 
+    public boolean readRetry() {
+        while(true) {
+            System.out.println("매칭 정보가 있습니다. 다시 매칭하시겠습니까?");
+            System.out.println("네 | 아니오");
+            String retry = Console.readLine();
+            try {
+                validateNotBlank(retry);
+                validateRetryValue(retry);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+            if(retry.equals("네")) {
+                return true;
+            }
+            if(retry.equals("아니오")) {
+                return false;
+            }
+        }
+    }
+
     private void validateCommand(String command) {
         validateNotBlank(command);
         validateRange(command);
@@ -89,9 +110,6 @@ public class InputView {
 
     private void validateEachValue(String input) {
         List<String> selections = Formatter.parser(input, COMMA_DELIMITER);
-        for(String selection : selections) {
-            System.out.println(selection);
-        }
         validateCourse(selections.get(0));
         validateLevel(selections.get(1));
         validateMission(selections.get(1), selections.get(2));
@@ -113,6 +131,12 @@ public class InputView {
         List<String> missions = Mission.getMissionsByLevel(Level.get(level));
         if(!missions.contains(mission)) {
             throw new IllegalArgumentException(formatErrorWithRetry(INVALID_MISSION));
+        }
+    }
+
+    private void validateRetryValue(String input) {
+        if(!input.equals("네") && !input.equals("아니오")) {
+            throw new IllegalArgumentException(formatErrorWithRetry(INVALID_RETRY));
         }
     }
 }

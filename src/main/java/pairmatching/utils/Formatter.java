@@ -21,18 +21,15 @@ public class Formatter {
         return after;
     }
 
-//    public static List<String> readCrewMembersFromFile(String filePath) {
-//        List<String> crewMembers = new ArrayList<>();
-//
-//        try {
-//            Path path = Paths.get(filePath);
-//            List<String> lines = Files.readAllLines(path);
-//
-//            crewMembers.addAll(lines);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        return crewMembers;
-//    }
+    public static List<String> readCrewMembersFrom(String filePath) {
+        List<String> crewMembers = new ArrayList<>();
+        try {
+            Path path = Paths.get(filePath);
+            List<String> lines = Files.readAllLines(path);
+            crewMembers.addAll(lines);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return crewMembers;
+    }
 }
