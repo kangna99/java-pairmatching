@@ -1,5 +1,7 @@
 package pairmatching.controller;
 
+import pairmatching.model.Course;
+import pairmatching.model.Mission;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
@@ -14,6 +16,6 @@ public class Controller {
 
     public void run() {
         inputView.readCommand();
-
+        outputView.printInformation();
     }
 }
