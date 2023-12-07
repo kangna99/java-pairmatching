@@ -1,5 +1,7 @@
 package pairmatching.model;
 
+import java.util.Arrays;
+
 public enum Level {
     LEVEL1("레벨1"),
     LEVEL2("레벨2"),
@@ -15,5 +17,17 @@ public enum Level {
 
     public String getName() {
         return name;
+    }
+
+    public static boolean contains(String name) {
+        return Arrays.stream(Level.values())
+                .anyMatch(level -> level.name.equals(name));
+    }
+
+    public static Level get(String levelName) {
+        return Arrays.stream(Level.values())
+                .filter(level -> level.getName().equals(levelName))
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
     }
 }

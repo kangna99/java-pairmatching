@@ -1,5 +1,6 @@
 package pairmatching.controller;
 
+import java.util.List;
 import pairmatching.model.Course;
 import pairmatching.model.Mission;
 import pairmatching.view.InputView;
@@ -15,7 +16,8 @@ public class Controller {
     }
 
     public void run() {
-        inputView.readCommand();
+        String command = inputView.readCommand();
         outputView.printInformation();
+        List<String> selection = inputView.readSelection();
     }
 }

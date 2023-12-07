@@ -1,5 +1,7 @@
 package pairmatching.model;
 
+import java.util.Arrays;
+
 public enum Course {
     BACKEND("백엔드"),
     FRONTEND("프론트엔드");
@@ -18,5 +20,10 @@ public enum Course {
         }
         result.setLength(result.length() - 3);
         return result.toString();
+    }
+
+    public static boolean contains(String name) {
+        return Arrays.stream(Course.values())
+                .anyMatch(course -> course.name.equals(name));
     }
 }

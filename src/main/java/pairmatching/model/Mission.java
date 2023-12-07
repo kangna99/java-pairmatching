@@ -5,6 +5,7 @@ import static pairmatching.model.Level.LEVEL2;
 import static pairmatching.model.Level.LEVEL4;
 import static pairmatching.model.Level.LEVEL5;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -27,7 +28,7 @@ public enum Mission {
         this.level = level;
     }
 
-    private static List<String> getMissionsByLevel(Level targetLevel) {
+    public static List<String> getMissionsByLevel(Level targetLevel) {
         return Stream.of(Mission.values())
                 .filter(mission -> mission.getLevel() == targetLevel)
                 .map(Mission::getName)
